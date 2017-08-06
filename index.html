@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/select2.min.css">
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" />
+
+  <script src="./js/constants.js"></script>
+  <script src="./js/filtermenu.js"></script>
+  <script src="./js/contextmenu.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/data.js"></script>
+  <script src="./js/vacation.js"></script>  
+  <script src="./js/scheduler.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+  <script src="./js/lib/select2.full.min.js"></script>
+
+  <!--Шаблоны-->
+  <script type="text/x-my-template" id="template_contextmenu">
+    <ul>
+      <li class="item-new" onclick="contextMenu.createNewVacation()">Создать отпуск</li>
+      <li class="item-open" onclick="contextMenu.openVacation()">Открыть отпуск</li>
+      <li class="item-delete" onclick="contextMenu.deleteVacation()">Удалить отпуск</li>
+      <li class="item-refresh" onclick="contextMenu.refreshData();">Обновить список</li>
+    </ul>
+  </script>
+</head>
+<body>
+  <nav class="header clearfix">
+    <div class="content-left">
+      <div class="menu-main-block">
+        <ul class="menu-main">
+          <li class="menu-main-item"><a class="btn new" href="#" onclick="scheduler.new()">Новая запись</a></li>
+          <li class="menu-main-item"><a class="btn refresh" href="#" onclick="scheduler.refresh()">Обновить</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content-right">      
+      <div class="menu-settings-block">
+        <a class="btn settings" href="#" onclick="filterMenu.show()">Фильтр</a>
+        <ul class="submenu-settings">
+          <li class="submenu-filter-item">
+            <label class="label-input" for="department">Подразделение</label>
+            <select class="select-department" multiple="multiple" onchange="filterMenu.changeFilterDepartment()"></select>
+          </li>
+          <li class="submenu-filter-item">
+            <label class="label-input" for="employee">Работник</label>
+            <select class="select-employee" multiple="multiple" onchange="filterMenu.changeFilterEmployee()"></select>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="scheduler">
+    <div class="scheduler-header"></div>
+    <div class="scheduler-content">
+
+    </div>
+  </div>
+
+  <script src="./js/main.js"></script>
+  <script>
+      $(".ui-resizable").resizable(
+            {
+              autoHide: true,
+              handles: 'e',
+              resize: stopChangeSize,
+              grid: [21,21]
+            }
+          );
+      $(init);
+      function init() {
+        $(".select-department").select2();
+        $(".select-employee").select2();
+      }
+  </script>
+</body>
+</html>
